@@ -1,0 +1,3 @@
+packages:
+  - git: "https://github.com/Snowflake-Labs/dbt_semantic_view.git"
+    revision: main

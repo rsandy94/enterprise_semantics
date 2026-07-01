@@ -1,0 +1,5 @@
+packages:
+  - git: https://github.com/Snowflake-Labs/dbt_semantic_view.git
+    name: dbt_semantic_view
+    revision: 0e7fa0e50aab5253b3ac818ec8d1b48c44e83108
+sha1_hash: dc4c7e388f60ca50976737634ba6ea31629b385e
