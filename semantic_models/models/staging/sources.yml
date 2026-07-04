@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    database: FINANCE         
+    schema: ANALYTICS               
+    tables:
+      - name: DIM_CUSTOMERS
+        identifier: dim_customers     
+      - name: FCT_SAAS_BILLING
+        identifier: fct_saas_billing

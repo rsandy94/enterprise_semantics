@@ -1,0 +1,13 @@
+semantic_models:
+  outputs:
+    dev:
+      account: NBPIACC-OE92440
+      database: FINANCE
+      password: "{{ env_var('DBT_ENV_SECRET_SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      schema: SEMANTIC_VIEWS
+      threads: 1
+      type: snowflake
+      user: RSANDY94
+      warehouse: COMPUTE_WH
+  target: dev
