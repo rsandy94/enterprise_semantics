@@ -1,0 +1,43 @@
+name: Deploy Semantic Views to Snowflake
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'semantic_models/models/semantic_views/**'
+
+jobs:
+  deploy-dbt-models:
+    name: Run dbt build
+    runs-on: ubuntu-latest
+
+    env:
+      DBT_ENV_SECRET_SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      DBT_PROFILES_DIR: ${{ github.workspace }}/semantic_models
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dbt-snowflake
+        working-directory: semantic_models
+        run: pip install "dbt-snowflake>=1.8,<2.0"
+
+      - name: Install dbt dependencies
+        working-directory: semantic_models
+        run: dbt deps
+
+      - name: dbt debug (verify connection)
+        working-directory: semantic_models
+        run: dbt debug
+
+      - name: Deploy Semantic Views
+        working-directory: semantic_models
+        run: dbt build --select semantic_views
