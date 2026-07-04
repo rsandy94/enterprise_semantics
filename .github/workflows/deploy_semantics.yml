@@ -25,10 +25,11 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip'
+          cache-dependency-path: semantic_models/requirements.txt
 
       - name: Install dbt-snowflake
         working-directory: semantic_models
-        run: pip install "dbt-snowflake>=1.8,<2.0"
+        run: pip install -r requirements.txt
 
       - name: Install dbt dependencies
         working-directory: semantic_models
